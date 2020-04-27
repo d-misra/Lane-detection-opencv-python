@@ -12,7 +12,7 @@ Python implementation of lane detection using image processing algorithms in Ope
 
 ## Dataset
 
-This project demonstrates the image processing pipeline using a single image. The lanes are marked by a solid white lines (on the right) and alternating short line segments with dots (on the left).
+This project demonstrates lane detection using a single image from a road dataset. The lanes are marked by a solid white lines (on the right) and alternating short line segments with dots (on the left).
 
 ![test-image](https://github.com/d-misra/Lane-detection-opencv/blob/master/Test.png)
 
