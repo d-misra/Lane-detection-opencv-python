@@ -2,7 +2,7 @@
 
 Python implementation of lane detection using image processing algorithms in OpenCV.
 
-![final-result](https://github.com/d-misra/Lane-detection-opencv/blob/master/Lanes.png)
+![final-result](https://github.com/d-misra/Lane-detection-opencv/blob/master/Hough_lines_avg.png)
 
 ## Requirements
 
@@ -14,7 +14,7 @@ Python implementation of lane detection using image processing algorithms in Ope
 
 This project demonstrates lane detection using a single image from a road dataset. The lanes are marked by a solid white line (on the right) and alternating short line segments with dots (on the left).
 
-![test-image](https://github.com/d-misra/Lane-detection-opencv/blob/master/Test.png)
+![test-image](https://github.com/d-misra/Lane-detection-opencv/blob/master/Test_image.png)
 
 The test image was taken from a road dataset video used in this Kaggle [project](https://www.kaggle.com/dpamgautam/video-file-for-lane-detection-project).  
 
