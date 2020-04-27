@@ -55,3 +55,24 @@ The threshold values decide which edges to be kept and which ones to discard. Ed
 Not all edges in the image are useful to the task, which is to identify lanes on the road. As the edges corresponding to the sky, trees etc are irrelevant, they need to be removed. The *region of interest* should fully cover mainly only the lane lines. A simple polygon shape that could define this is a triangle with vertices roughly around the bottom left corner, the image center and near the bottom right corner of the image. So, a triangular polygon is defined as the ROI to be cropped out from the original image. All other portions in the image are excluded by applying a mask using ```cv2.fillPoly()``` and ```cv2.bitwise_and()```
 
 ![ROI](https://github.com/d-misra/Lane-detection-opencv/blob/master/ROI.png)
+
+## Hough transforms for line detection
+
+Hough transforms is a feature extraction technique to identify simple shapes such as circles, lines etc in an image. Read more about it from OpenCV [here](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html) and in this [article](https://www.learnopencv.com/hough-transform-with-opencv-c-python/) from LearnOpenCV.
+
+The lane detection problem requires to identify lines that intersects through all nearby edge pixels, from edges detected in the region of interest. A transformation of lines in Hough Space allows to solve for their intersections simply and then the intersection point can be transformed back into image space to meet this goal. OpenCV function on probabilistic hough transforms ```cv2.HoughLinesP``` for generating Hough lines from an image with edge pixels, is used with reasonable parameters.
+
+```
+lines = cv2.HoughLinesP(
+    cropped_image,
+    rho=2,              #Distance resolution of accumulator in pixels
+    theta=np.pi / 180,  #Angle resolution of accumulator in radians
+    threshold=100,      #Min. number of intersecting points to detect a line indicated by [x1, y1, x2, y2]
+    lines=np.array([]), #Vector to return start and end points of the lines
+    minLineLength=40,   #Line segments shorter than this are rejected
+    maxLineGap=25       #Max gap allowed between points on the same line
+)
+```
+A set of lines is returned, which when super-imposed on the image looks like this: 
+
+![hough](https://github.com/d-misra/Lane-detection-opencv/blob/master/Hough_lines_original.png)
