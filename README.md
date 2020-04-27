@@ -67,8 +67,8 @@ lines = cv2.HoughLinesP(
     cropped_image,
     rho=2,              #Distance resolution of accumulator in pixels
     theta=np.pi / 180,  #Angle resolution of accumulator in radians
-    threshold=100,      #Min. number of intersecting points to detect a line indicated by [x1, y1, x2, y2]
-    lines=np.array([]), #Vector to return start and end points of the lines
+    threshold=100,      #Min. number of intersecting points to detect a line 
+    lines=np.array([]), #Vector to return start and end points of the lines indicated by [x1, y1, x2, y2]
     minLineLength=40,   #Line segments shorter than this are rejected
     maxLineGap=25       #Max gap allowed between points on the same line
 )
@@ -76,3 +76,21 @@ lines = cv2.HoughLinesP(
 A set of lines is returned, which when super-imposed on the image looks like this: 
 
 ![hough](https://github.com/d-misra/Lane-detection-opencv/blob/master/Hough_lines_original.png)
+
+## Average and extrapolation of lines
+
+Hough lines generated indicate multiple lines on the same lane. So, these lines are averaged to represent a single line. Also, some lines are partially detected. The averaged lines are extrapolated to cover the full length of the lanes.
+
+The averaging process is performed based on the slopes of the multiple lines, which are to be grouped together belonging to either the *left* lane or the *right* lane. In the image, the ```y``` co-ordinate is reversed, (as the origin is at the top left corner) thus having a higher value when ```y``` is lower in the image. By this convention, the left lane has a negative slope and the right one has a positive slope. All lines having positive slope are group together and averaged to get the right lane, and vice versa for the negative slopes to obtain the left lane. Final lanes detected can be seen below:
+
+![final](https://github.com/d-misra/Lane-detection-opencv/blob/master/Hough_lines_avg.png)
+
+## Conclusions
+
+This image processing pipeline architecture can also be successfully applied to any video streams. It applies mostly to scenes having straight lane lines.
+
+Few limitation of the process are:
+- Line averaging considers only 2 lanes in the final steps, whereas there can be multiple lanes. Additionally, this process assumes one lane on each side, and would fail if both lanes were on one side  (i.e two left lanes or two right ones)
+- If road is steep, the region of interest needs to be modified to detect horizon first (up-to which the lane lines should extend to)
+- Curved line detection is beyond the scope of this project and involves more advanced topics such as perspective transforms and poly fitting lines. However, since lanes in the vicinity of cars usually appear straight (curvature farther in the distance), this method should still perform fine.
+
