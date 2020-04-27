@@ -6,7 +6,7 @@ Python implementation of lane detection using image processing algorithms in Ope
 
 ## Requirements
 
-- opencv (cv2)
+- OpenCV (cv2)
 - matplotlib
 - numpy
 
