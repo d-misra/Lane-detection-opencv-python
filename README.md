@@ -22,7 +22,7 @@ The test image was taken from a road dataset video used in this Kaggle [project]
 
 1. Loading of test image
 2. Detect edges (gray scaling, Gaussian smoothing, Canny edge detection)
-3. Identify region of interest
+3. Define region of interest
 4. Apply Hough transforms
 5. Post-processing of lane lines (averaging, extrapolating)
 6. (Optional) Apply to video streams
