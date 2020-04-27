@@ -58,7 +58,7 @@ Not all edges in the image are useful to the task, which is to identify lanes on
 
 ## Hough transforms for line detection
 
-Hough transforms is a feature extraction technique to identify simple shapes such as circles, lines etc in an image. Read more about it from OpenCV [here](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html) and in this [article](https://www.learnopencv.com/hough-transform-with-opencv-c-python/) from LearnOpenCV.
+Hough transforms is a feature extraction technique to identify simple shapes such as circles, lines etc in an image. Read more about it from OpenCV [here](https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_imgproc/py_houghlines/py_houghlines.html) and in this [article](https://www.learnopencv.com/hough-transform-with-opencv-c-python/) by LearnOpenCV.
 
 The lane detection problem requires to identify lines that intersects through all nearby edge pixels, from edges detected in the region of interest. A transformation of lines in Hough Space allows to solve for their intersections simply and then the intersection point can be transformed back into image space to meet this goal. OpenCV function on probabilistic hough transforms ```cv2.HoughLinesP``` for generating Hough lines from an image with edge pixels, is used with reasonable parameters.
 
