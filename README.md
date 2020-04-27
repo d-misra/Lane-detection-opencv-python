@@ -52,6 +52,6 @@ The threshold values decide which edges to be kept and which ones to discard. Ed
 
 ## Region of interest
 
-Not all edges in the image are useful to the task, which is to identify lanes on the road. As the edges corresponding to the sky, the buildings etc are irrelevant, they need to be removed. The *region of interest* should fully cover mainly only the lane lines. A simple polygon shape that could define this is a triangle with vertices roughly around the bottom left corner, the image center and near the bottom right corner of the image. So, a triangular polygon is defined as the ROI to be cropped out from the original image. All other portions in the image are excluded by applying a mask using ```cv2.fillPoly()```
+Not all edges in the image are useful to the task, which is to identify lanes on the road. As the edges corresponding to the sky, trees etc are irrelevant, they need to be removed. The *region of interest* should fully cover mainly only the lane lines. A simple polygon shape that could define this is a triangle with vertices roughly around the bottom left corner, the image center and near the bottom right corner of the image. So, a triangular polygon is defined as the ROI to be cropped out from the original image. All other portions in the image are excluded by applying a mask using ```cv2.fillPoly()```
 
 ![ROI](https://github.com/d-misra/Lane-detection-opencv/blob/master/ROI.png)
