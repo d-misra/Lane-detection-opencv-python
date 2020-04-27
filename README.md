@@ -42,8 +42,8 @@ A 5x5 Gaussian kernel was used here. The ```kernel_size``` can be tweaked with t
 cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
 ```
 
-- **Edge detection** - OpenCV function for canny edge detection takes 3 main arguments : the input image and edge intensity thresholds.
+- **Edge detection** - OpenCV function for canny edge detection takes 3 main arguments : input image and edge intensity gradient thresholds.
 ```
 cv2.Canny(image, min_threshold, max_threshold)
 ```
-The threshold values decide which edges to be kept and which ones to discard. Edges having intensity gradient more than ```max_threshold``` are kept while ones lower than ```min_threshold```are rejected. Edges with values mid-way, are decided depending on their connectivity - if linked to an *edge-confirmed* pixel then they are considered as part of the edge, otherwise discarded. Threshold values are empirically determined (Canny suggested 2:1 or 3:1 ratio between max and min values). If ```max_threshold``` is very high, no edge will be found whereas if too low, high number of edges are detected.
+The threshold values decide which edges to be kept and which ones to discard. Edges having intensity gradient more than ```max_threshold``` are kept while ones lower than ```min_threshold``` are rejected. Edges with values mid-way, are decided depending on their connectivity - if linked to an *edge-confirmed* pixel then they are considered as part of the edge, otherwise discarded. Threshold values are empirically determined (Canny suggested 2:1 or 3:1 ratio between max and min values). If ```max_threshold``` is very high, no edge will be found whereas if too low, high number of edges are detected. Here, ```min_threshold=50``` and ```min_threshold=150``` values were chosen. 
