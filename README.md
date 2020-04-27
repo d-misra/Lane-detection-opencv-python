@@ -49,3 +49,9 @@ cv2.Canny(image, min_threshold, max_threshold)
 The threshold values decide which edges to be kept and which ones to discard. Edges having intensity gradient more than ```max_threshold``` are kept while ones lower than ```min_threshold``` are rejected. Edges with values mid-way, are decided depending on their connectivity - if linked to an *edge-confirmed* pixel then they are considered as part of the edge, otherwise discarded. Threshold values are empirically determined (Canny suggested 2:1 or 3:1 ratio between max and min values). If ```max_threshold``` is very high, no edge will be found whereas if too low, high number of edges are detected. Here, ```min_threshold=50``` and ```min_threshold=150``` values were chosen. Canny detected edges can be seen in the image below. 
 
 ![canny](https://github.com/d-misra/Lane-detection-opencv/blob/master/Canny_edges.png)
+
+## Region of interest
+
+Not all edges in the image are useful to the task, which is to identify lanes on the road. As the edges corresponding to the sky, the buildings etc are irrelevant, they need to be removed. The *region of interest* should fully cover mainly only the lane lines. A simple polygon shape that could define this is a triangle with vertices roughly around the bottom left corner, the image center and near the bottom right corner of the image. So, a triangular polygon is defined as the ROI to be cropped out from the original image. All other portions in the image are excluded by applying a mask using ```cv2.fillPoly()```
+
+![ROI](https://github.com/d-misra/Lane-detection-opencv/blob/master/ROI.png)
